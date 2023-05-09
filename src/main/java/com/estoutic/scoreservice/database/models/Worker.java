@@ -1,6 +1,6 @@
 package com.estoutic.scoreservice.database.models;
 
-import com.estoutic.scoreservice.database.models.task.UserTaskResult;
+import com.estoutic.scoreservice.database.models.task.WorkerTaskResult;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +26,7 @@ public class Worker {
     private String username;
 
     @OneToMany(mappedBy = "worker")
-    private List<UserTaskResult> taskResults;
+    private List<WorkerTaskResult> taskResults;
 
     public Worker() {}
 }

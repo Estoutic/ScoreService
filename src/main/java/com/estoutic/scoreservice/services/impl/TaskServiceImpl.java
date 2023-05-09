@@ -3,11 +3,11 @@ package com.estoutic.scoreservice.services.impl;
 import com.estoutic.scoreservice.database.models.Category;
 import com.estoutic.scoreservice.database.models.Worker;
 import com.estoutic.scoreservice.database.models.task.Task;
-import com.estoutic.scoreservice.database.models.task.UserTaskResult;
+import com.estoutic.scoreservice.database.models.task.WorkerTaskResult;
 import com.estoutic.scoreservice.database.repositories.CategoryRepository;
 import com.estoutic.scoreservice.database.repositories.WorkerRepository;
 import com.estoutic.scoreservice.database.repositories.task.TaskRepository;
-import com.estoutic.scoreservice.database.repositories.task.UserTaskResultRepository;
+import com.estoutic.scoreservice.database.repositories.task.WorkerTaskResultRepository;
 import com.estoutic.scoreservice.services.TaskService;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +18,14 @@ public class TaskServiceImpl implements TaskService {
     private final CategoryRepository categoryRepository;
     private final TaskRepository taskRepository;
     private final WorkerRepository workerRepository;
-    private final UserTaskResultRepository userTaskResultRepository;
+    private final WorkerTaskResultRepository workerTaskResultRepository;
 
     public TaskServiceImpl(CategoryRepository categoryRepository, TaskRepository taskRepository,
-                           WorkerRepository workerRepository, UserTaskResultRepository userTaskResultRepository) {
+                           WorkerRepository workerRepository, WorkerTaskResultRepository workerTaskResultRepository) {
         this.categoryRepository = categoryRepository;
         this.taskRepository = taskRepository;
         this.workerRepository = workerRepository;
-        this.userTaskResultRepository = userTaskResultRepository;
+        this.workerTaskResultRepository = workerTaskResultRepository;
     }
 
     @Override
@@ -45,21 +45,21 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public String saveUserTaskResult(String taskId, String userId, int score) {
+    public String saveUserTaskResult(String taskId, String workerId, int score) {
         Task task = taskRepository.findById(taskId).orElse(null);
         if(task == null){
             return null;
         }
-        Worker worker = workerRepository.findById(userId).orElse(null);
+        Worker worker = workerRepository.findById(workerId).orElse(null);
         if(worker == null){
             return null;
         }
-        UserTaskResult userTaskResult = UserTaskResult.builder()
+        WorkerTaskResult workerTaskResult = WorkerTaskResult.builder()
                 .task(task)
                 .worker(worker)
                 .score(score)
                 .build();
-        userTaskResultRepository.save(userTaskResult);
-        return userTaskResult.getId();
+        workerTaskResultRepository.save(workerTaskResult);
+        return workerTaskResult.getId();
     }
 }

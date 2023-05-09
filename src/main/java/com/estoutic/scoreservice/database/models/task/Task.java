@@ -30,7 +30,7 @@ public class Task {
     private Category category;
 
     @OneToMany(mappedBy = "task")
-    private List<UserTaskResult> taskResults;
+    private List<WorkerTaskResult> taskResults;
 
     public Task(){}
 }

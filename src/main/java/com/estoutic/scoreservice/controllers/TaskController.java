@@ -20,8 +20,8 @@ public class TaskController {
 
     @PostMapping("result/{id}/add")
     public String addTaskResult(@PathVariable(name = "id") String id,
-                                @RequestParam() String userId,
+                                @RequestParam() String workerId,
                                 @RequestParam() int score){
-        return taskService.saveUserTaskResult(id,userId,score);
+        return taskService.saveUserTaskResult(id,workerId,score);
     }
 }

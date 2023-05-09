@@ -13,7 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Builder
 @AllArgsConstructor
 @Entity
-public class UserTaskResult {
+public class WorkerTaskResult {
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -31,5 +31,5 @@ public class UserTaskResult {
     @JoinColumn(name = "task_id")
     private Task task;
 
-    public UserTaskResult(){}
+    public WorkerTaskResult(){}
 }
