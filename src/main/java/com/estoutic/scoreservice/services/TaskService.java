@@ -2,5 +2,7 @@ package com.estoutic.scoreservice.services;
 
 public interface TaskService {
 
-    String save(String categoryId,String taskName);
+    String saveTask(String categoryId, String taskName);
+
+    String saveUserTaskResult(String taskId, String userId, int score);
 }

@@ -1,11 +1,14 @@
-package com.estoutic.scoreservice.database.models;
+package com.estoutic.scoreservice.database.models.task;
 
+import com.estoutic.scoreservice.database.models.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,6 +28,9 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "task")
+    private List<UserTaskResult> taskResults;
 
     public Task(){}
 }

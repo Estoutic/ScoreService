@@ -1,6 +1,6 @@
 package com.estoutic.scoreservice.controllers;
 
-import com.estoutic.scoreservice.services.UserService;
+import com.estoutic.scoreservice.services.WorkerService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class WorkerController {
 
-    private final UserService userService;
+    private final WorkerService workerService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public WorkerController(WorkerService workerService) {
+        this.workerService = workerService;
     }
 
     @PostMapping("/add")
     public String addUser(@RequestParam() String username){
-        return userService.save(username);
+        return workerService.save(username);
     }
 }

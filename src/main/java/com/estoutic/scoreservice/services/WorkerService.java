@@ -1,6 +1,6 @@
 package com.estoutic.scoreservice.services;
 
-public interface UserService {
+public interface WorkerService {
 
     String save(String username);
 }

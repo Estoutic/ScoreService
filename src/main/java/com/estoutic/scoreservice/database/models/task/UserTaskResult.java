@@ -1,6 +1,6 @@
-package com.estoutic.scoreservice.database.models;
+package com.estoutic.scoreservice.database.models.task;
 
-import com.estoutic.scoreservice.database.models.task.Task;
+import com.estoutic.scoreservice.database.models.Worker;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,14 +8,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @Entity
-public class Category {
+public class UserTaskResult {
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -23,12 +21,15 @@ public class Category {
     @Column(length = 64, updatable = false, nullable = false)
     private String id;
 
-    private String name;
+    private int score;
 
-    @OneToMany(mappedBy = "category")
-    private List<Task> tasks;
+    @ManyToOne
+    @JoinColumn(name = "worker_id")
+    private Worker worker;
 
-    public Category() {
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    private Task task;
 
-    }
+    public UserTaskResult(){}
 }
