@@ -7,14 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @Entity
-public class Category {
+public class Task {
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -24,10 +22,9 @@ public class Category {
 
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Task> tasks;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    public Category() {
-
-    }
+    public Task(){}
 }
