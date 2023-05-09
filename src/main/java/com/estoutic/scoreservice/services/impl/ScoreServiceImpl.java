@@ -6,6 +6,8 @@ import com.estoutic.scoreservice.database.repositories.UserScoreRepository;
 import com.estoutic.scoreservice.services.ScoreService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScoreServiceImpl implements ScoreService {
 
@@ -19,5 +21,10 @@ public class ScoreServiceImpl implements ScoreService {
     public void saveScoreInfo(UserScoreInfoDto userScoreInfoDto) {
         UserScore userScore = new UserScore(userScoreInfoDto);
         userScoreRepository.save(userScore);
+    }
+
+    @Override
+    public List<UserScoreInfoDto> getAllInfo() {
+        return userScoreRepository.findAll().stream().map(UserScoreInfoDto::new).toList();
     }
 }
