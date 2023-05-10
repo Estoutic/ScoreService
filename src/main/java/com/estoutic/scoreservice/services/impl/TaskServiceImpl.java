@@ -59,7 +59,10 @@ public class TaskServiceImpl implements TaskService {
                 .worker(worker)
                 .score(score)
                 .build();
+        task.addTaskResult(workerTaskResult);
+
         workerTaskResultRepository.save(workerTaskResult);
+        taskRepository.save(task);
         return workerTaskResult.getId();
     }
 }

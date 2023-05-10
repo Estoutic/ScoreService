@@ -32,5 +32,9 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private List<WorkerTaskResult> taskResults;
 
+    public void addTaskResult(WorkerTaskResult workerTaskResult){
+        this.getTaskResults().add(workerTaskResult);
+    }
+
     public Task(){}
 }

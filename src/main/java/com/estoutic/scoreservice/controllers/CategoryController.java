@@ -1,10 +1,8 @@
 package com.estoutic.scoreservice.controllers;
 
+import com.estoutic.scoreservice.controllers.models.CategoryResult;
 import com.estoutic.scoreservice.services.CategoryService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/category")
@@ -19,6 +17,11 @@ public class CategoryController {
     @PostMapping("/add")
     public String addCategory(@RequestParam() String categoryName) {
         return categoryService.save(categoryName);
+    }
+
+    @GetMapping("/{id}/all")
+    public CategoryResult findAllCategoryInfo(@PathVariable(name = "id") String categoryId){
+        return categoryService.getAllCategoryInfo(categoryId);
     }
 
 }
