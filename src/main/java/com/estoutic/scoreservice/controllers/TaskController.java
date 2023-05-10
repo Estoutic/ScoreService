@@ -22,7 +22,6 @@ public class TaskController {
     public String addTaskResult(@PathVariable(name = "id") String id,
                                 @RequestParam() String workerId,
                                 @RequestParam() int score){
-        System.out.println(score);
         return taskService.saveUserTaskResult(id,workerId,score);
     }
 }

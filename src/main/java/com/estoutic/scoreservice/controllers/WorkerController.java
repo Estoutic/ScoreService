@@ -1,13 +1,11 @@
 package com.estoutic.scoreservice.controllers;
 
+import com.estoutic.scoreservice.controllers.models.worker_info.WorkerInfoResult;
 import com.estoutic.scoreservice.services.WorkerService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/worker")
 public class WorkerController {
 
     private final WorkerService workerService;
@@ -17,7 +15,12 @@ public class WorkerController {
     }
 
     @PostMapping("/add")
-    public String addUser(@RequestParam() String username){
+    public String addWorker(@RequestParam() String username) {
         return workerService.save(username);
+    }
+
+    @GetMapping("/{id}/scores")
+    public WorkerInfoResult findAllWorkerScores(@PathVariable(name = "id") String workerId){
+        return workerService.getWorkerCategoryResults(workerId);
     }
 }

@@ -1,8 +1,10 @@
 package com.estoutic.scoreservice.services;
 
+import com.estoutic.scoreservice.controllers.models.worker_info.WorkerInfoResult;
+
 public interface WorkerService {
 
     String save(String username);
 
-    String getWorkerResults(String workerId);
+    WorkerInfoResult getWorkerCategoryResults(String workerId);
 }

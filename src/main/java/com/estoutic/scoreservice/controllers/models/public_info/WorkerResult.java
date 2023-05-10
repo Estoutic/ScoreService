@@ -1,4 +1,4 @@
-package com.estoutic.scoreservice.controllers.models;
+package com.estoutic.scoreservice.controllers.models.public_info;
 
 import lombok.Getter;
 import lombok.Setter;

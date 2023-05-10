@@ -11,7 +11,5 @@ import java.util.List;
 @Repository
 public interface WorkerTaskResultRepository extends JpaRepository<WorkerTaskResult, String> {
 
-    public List<WorkerTaskResult>  findAllByWorker(Worker worker);
-
-    List<WorkerTaskResult> findByTaskIn(List<Task> taskList);
+    public WorkerTaskResult findByWorkerAndTask(Worker worker, Task task);
 }

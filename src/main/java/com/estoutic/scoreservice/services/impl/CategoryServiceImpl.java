@@ -1,7 +1,7 @@
 package com.estoutic.scoreservice.services.impl;
 
-import com.estoutic.scoreservice.controllers.models.CategoryResult;
-import com.estoutic.scoreservice.controllers.models.WorkerResult;
+import com.estoutic.scoreservice.controllers.models.public_info.CategoryResult;
+import com.estoutic.scoreservice.controllers.models.public_info.WorkerResult;
 import com.estoutic.scoreservice.database.models.Category;
 import com.estoutic.scoreservice.database.models.Worker;
 import com.estoutic.scoreservice.database.models.task.Task;
@@ -70,7 +70,7 @@ public class CategoryServiceImpl implements CategoryService {
             for (Task task : category.getTasks()) {
                 Map<String, Double> results = allTaskResults.get(task.getName());
                 Double workerScore = results != null && results.containsKey(worker.getUsername()) ? results.get(worker.getUsername()) : 0;
-                if (workerScore > 0) {
+                if (workerScore >= 0) {
                     totalTasks++;
                     totalScore += workerScore;
                 }

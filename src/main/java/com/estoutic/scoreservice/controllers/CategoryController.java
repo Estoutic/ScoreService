@@ -1,6 +1,6 @@
 package com.estoutic.scoreservice.controllers;
 
-import com.estoutic.scoreservice.controllers.models.CategoryResult;
+import com.estoutic.scoreservice.controllers.models.public_info.CategoryResult;
 import com.estoutic.scoreservice.services.CategoryService;
 import org.springframework.web.bind.annotation.*;
 

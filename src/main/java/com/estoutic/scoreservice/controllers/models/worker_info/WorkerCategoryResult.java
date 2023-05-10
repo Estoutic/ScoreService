@@ -1,4 +1,4 @@
-package com.estoutic.scoreservice.controllers.models;
+package com.estoutic.scoreservice.controllers.models.worker_info;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +11,11 @@ import java.util.List;
 @Setter
 @Builder
 @AllArgsConstructor
-public class CategoryResult {
+public class WorkerCategoryResult {
+
     private String categoryName;
     private List<TaskResult> taskResults;
-    private List<WorkerResult> workerResults;
 
-    public CategoryResult() {
+    public WorkerCategoryResult() {
     }
 }
