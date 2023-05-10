@@ -9,9 +9,9 @@ public class WorkerResult {
 
     public String workerName;
 
-    public int score;
+    public double score;
 
-    public WorkerResult(String workerName, int score) {
+    public WorkerResult(String workerName, double score) {
         this.workerName = workerName;
         this.score = score;
     }

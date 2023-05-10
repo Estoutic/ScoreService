@@ -11,6 +11,8 @@ import com.estoutic.scoreservice.database.repositories.task.WorkerTaskResultRepo
 import com.estoutic.scoreservice.services.TaskService;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class TaskServiceImpl implements TaskService {
 
@@ -53,6 +55,11 @@ public class TaskServiceImpl implements TaskService {
         Worker worker = workerRepository.findById(workerId).orElse(null);
         if(worker == null){
             return null;
+        }
+        for(WorkerTaskResult workerTaskResult : worker.getTaskResults()){
+            if(Objects.equals(workerTaskResult.getTask().getId(), taskId)){
+                throw new RuntimeException("result already exist");
+            }
         }
         WorkerTaskResult workerTaskResult = WorkerTaskResult.builder()
                 .task(task)
