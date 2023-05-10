@@ -1,0 +1,15 @@
+version: '3'
+services:
+  score_service:
+    image: score_service
+    container_name: score_service
+    environment:
+      - spring.profiles.active=dev
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: score_service_net
