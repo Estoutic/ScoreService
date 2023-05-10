@@ -33,10 +33,9 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public String saveTask(String categoryId, String taskName) {
 
-        Category category = categoryRepository.findById(categoryId).orElse(null);
-        if(category == null){
-            return null;
-        }
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new RuntimeException("category not found"));
+
         Task task = Task.builder()
                 .name(taskName)
                 .category(category)
@@ -48,14 +47,10 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public String saveUserTaskResult(String taskId, String workerId, int score) {
-        Task task = taskRepository.findById(taskId).orElse(null);
-        if(task == null){
-            return null;
-        }
-        Worker worker = workerRepository.findById(workerId).orElse(null);
-        if(worker == null){
-            return null;
-        }
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("task not found"));
+
+        Worker worker = workerRepository.findById(workerId).orElseThrow(() -> new RuntimeException("worker not found"));
+
         for(WorkerTaskResult workerTaskResult : worker.getTaskResults()){
             if(Objects.equals(workerTaskResult.getTask().getId(), taskId)){
                 throw new RuntimeException("result already exist");
