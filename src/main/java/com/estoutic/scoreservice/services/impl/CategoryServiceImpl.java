@@ -13,14 +13,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final WorkerTaskResultRepository workerTaskResultRepository;
-    private  final TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     public CategoryServiceImpl(CategoryRepository categoryRepository, WorkerTaskResultRepository workerTaskResultRepository, TaskRepository taskRepository) {
         this.categoryRepository = categoryRepository;
@@ -55,10 +54,9 @@ public class CategoryServiceImpl implements CategoryService {
             for (WorkerTaskResult workerResult : task.getTaskResults()) {
                 String workerName = workerResult.getWorker().getUsername();
                 int score = workerResult.getScore();
-                if(workerToScore.containsKey(workerName)) {
+                if (workerToScore.containsKey(workerName)) {
                     workerToScore.put(workerName, workerToScore.get(workerName) + score);
-                }
-                else{
+                } else {
                     workerToScore.put(workerName, score);
                 }
             }
@@ -66,9 +64,11 @@ public class CategoryServiceImpl implements CategoryService {
             taskResults.add(new TaskResult(taskId, taskName, workerToScore));
         }
 
-        return new CategoryResult(category.getName(), taskResults);
+        return  CategoryResult.builder()
+                .categoryName(category.getName())
+                .taskResults(taskResults)
+                .build();
     }
-
 
 
 }

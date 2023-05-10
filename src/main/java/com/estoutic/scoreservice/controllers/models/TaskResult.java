@@ -9,12 +9,12 @@ import java.util.Map;
 @Setter
 public class TaskResult {
     private String id;
-    private String workerName;
+    private String taskName;
     private Map<String, Integer> results;
 
-    public TaskResult(String id, String workerName, Map<String, Integer> results) {
+    public TaskResult(String id, String taskName, Map<String, Integer> results) {
         this.id = id;
-        this.workerName = workerName;
+        this.taskName = taskName;
         this.results = results;
     }
 }
